@@ -18,13 +18,13 @@ import com.github.javafaker.Faker;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class Conference_Single_Meeting_Test {
+public class Multi_moderator_multi_meeting {
 
 	public static void main(String[] args) {
 
 		WebDriverManager.chromedriver().setup();
 
-        for (int count = 1; count <= 10; count++) {
+        for (int count = 1; count <= 5; count++) {
         	
             ChromeOptions options = new ChromeOptions();
             
@@ -76,23 +76,25 @@ public class Conference_Single_Meeting_Test {
                 
                 wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[contains(text(),'Verify')]"))).click();
                 
-                wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//p[contains(text(),'Join Meeting')]"))).click();
-                
-                wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@id='meet_id']"))).sendKeys("CON000887");
-                
-                wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[contains(text(),'Join')]"))).click();
-                
-                wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[contains(text(),'Join Meeting')]"))).click();
-
-                driver.switchTo().frame("jitsiConferenceFrame0");
-                
-                wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='css-1hbmoh1-actionButton primary']"))).click();
-
-                WebElement meeting_name = driver.findElement(By.xpath("//div[@class='subject-text--content css-h56vee-content']"));
-                
-                String meeting_text = meeting_name.getText();
-                
-                System.out.println(meeting_text);
+                wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='meet_sec active']"))).click();
+        		
+        		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@id='topic']"))).sendKeys(firstName);
+        		
+        		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[contains(text(),'Create')]"))).click();
+        		
+        		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[contains(text(),'Launch Meeting')]"))).click();
+        		
+        		driver.switchTo().frame("jitsiConferenceFrame0");
+        		
+        		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='css-1hbmoh1-actionButton primary']"))).click();
+        		
+        		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='subject-text--content css-h56vee-content']")));
+        		
+        		WebElement meeting_name = driver.findElement(By.xpath("//div[@class='subject-text--content css-h56vee-content']"));
+        		
+        		String meeting_text = meeting_name.getText();
+        		
+        		System.out.println(meeting_text);
                 
             } catch (Exception e) {
             	

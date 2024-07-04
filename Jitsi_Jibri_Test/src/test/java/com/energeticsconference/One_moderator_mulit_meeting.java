@@ -16,7 +16,7 @@ import com.github.javafaker.Faker;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class Conference_Meeting_Test {
+public class One_moderator_mulit_meeting {
 
 	public static void main(String[] args) {
 
